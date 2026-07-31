@@ -15,10 +15,9 @@
     "LICENSE"
   ],
   "scripts": {
-    "prepare": "bun run build",
     "build": "tsc",
     "test": "bun test",
-    "prepublishOnly": "bun run build"
+    "prepublishOnly": "tsc"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
