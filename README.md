@@ -18,10 +18,19 @@ mkdir -p ~/.pi/extensions
 cp .pi/extensions/statusline.ts ~/.pi/extensions/
 ```
 
+
 No additional dependencies are required.
 
 ## Usage
-After refreshing the Pi agent or re‑loading extensions, the status line appears as the default `statusline` UI element. You can change its name by editing the first argument to `setStatus` if you want to display it elsewhere.
+- Install the extension:
+
+```bash
+pi install ./        # or pi install npm:@hs1n/pi-statusline
+```
+
+- Reload Pi or restart your session.
+
+The status line will automatically appear as the default `statusline` UI element. You can change its name by editing the first argument to `setStatus` if you want to display it elsewhere.
 
 ## Customization
 All rendering logic lives in `statusline.ts`. Feel free to adjust the formatting, add colors, or change the metrics you care about.
