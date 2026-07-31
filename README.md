@@ -15,7 +15,7 @@ Clone the repository but simply copy the file into your Pi extensions directory:
 
 ```bash
 mkdir -p ~/.pi/extensions
-cp .pi/extensions/statusline.ts ~/.pi/extensions/
+cp extensions/statusline.ts ~/.pi/extensions/
 ```
 
 
@@ -25,15 +25,21 @@ No additional dependencies are required.
 - Install the extension:
 
 ```bash
-pi install ./        # or pi install npm:@hs1n/pi-statusline
+pi install ./        # local path
+pi install npm:@hs1n/pi-statusline   # from npm
+pi install git:github.com/hs1n/pi-statusline@main   # from git tag
 ```
 
-- Reload Pi or restart your session.
+- After installing, simply reload Pi or restart your session to load the new extension.
 
+```bash
+pi reload
+```
 The status line will automatically appear as the default `statusline` UI element. You can change its name by editing the first argument to `setStatus` if you want to display it elsewhere.
 
-## Customization
-All rendering logic lives in `statusline.ts`. Feel free to adjust the formatting, add colors, or change the metrics you care about.
+## Package
+
+This repository is a **Pi package**. It contains a `package.json` and a `pi` key that declares the locations of extensions, skills, prompts, and themes. You can publish it to npm, or install it directly from GitHub.
 
 ---
 
