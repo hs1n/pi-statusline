@@ -2,36 +2,37 @@
   "name": "@hs1n/pi-statusline",
   "version": "1.0.0",
   "description": "A lightweight Pi Coding‑Agent status‑line extension.",
-  "author": "Chase L.",
+  "author": "Chase L.",
   "license": "MIT",
   "type": "module",
-
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-
   "files": [
     "dist/**",
     "extensions/**",
     "README.md",
     "LICENSE"
   ],
-
   "scripts": {
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run build"
+    "prepare": "bun run build",
+    "build": "tsc",
+    "test": "bun test",
+    "prepublishOnly": "bun run build"
   },
-
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
   "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.83.0",
     "typescript": "^5.3.3"
   },
-
   "keywords": [
     "pi",
     "statusline",
-    "extension"
+    "extension",
+    "pi-package"
   ],
-
   "publishConfig": {
     "access": "public"
   },
