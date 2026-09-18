@@ -1,14 +1,18 @@
 # Status Line Extension for Pi
 
-This extension provides a lightweight, real‑time status bar for the [Pi Coding Agent](https://github.com/earendil-works/pi-coding-agent). It shows the current model, the thinking level, the current working directory, and the progress of tool executions. The UI is minimal and non‑intrusive, making it suitable for terminal sessions.
+This extension provides a lightweight, real‑time status bar for the [Pi Coding Agent](https://github.com/earendil-works/pi-coding-agent). It shows compact turn progress, Git status, and tool execution statistics while leaving model, context, and working-directory details to Pi’s built-in footer. The UI is minimal and non‑intrusive, making it suitable for terminal sessions.
 
 ---
 
 ## Features
-- **Session start**: Displays the active model and thinking level.
-- **Turn start**: Shows the cwd and a “Processing…​” indicator.
-- **Turn end**: Shows elapsed time, number of tools run, and a ✔️ success mark.
+- **Session start**: Displays a compact `Ready` state; Pi’s built-in footer supplies the active model and thinking level.
+- **Git status**: Shows the current branch, working-tree change count, and upstream ahead/behind counts when the cwd is a Git repository.
+- **Compact status line**: Omits cwd, model, and token usage because Pi’s built-in footer already displays them.
+- **Turn start**: Shows Git status and a “Processing…​” indicator.
+- **Turn end**: Shows elapsed time, tool count, tool errors, tool execution time, and a ✔️/✗ result mark.
 - **Tool execution start**: Shows which tool is running and how many times it’s been invoked during the turn.
+
+Git is queried asynchronously with a short timeout. Non-Git directories and Git command failures are ignored so they never prevent Pi from working.
 
 ## Installation
 Clone the repository but simply copy the file into your Pi extensions directory:
@@ -44,7 +48,7 @@ This repository is a **Pi package**. It contains a `package.json` and a `pi` key
 ---
 
 ## Development
-The source lives in the `statusline.ts` file. It simply hooks into Pi's event system. Run tests if you add changes.
+The entrypoint lives in `extensions/statusline.ts`; turn statistics are handled by `extensions/turn-accounting.ts`, and Git snapshots by `extensions/git-snapshot.ts`. Run tests if you add changes.
 
 ---
 
