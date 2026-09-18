@@ -15,43 +15,51 @@ This extension provides a lightweight, real‑time status bar for the [Pi Coding
 Git is queried asynchronously with a short timeout. Non-Git directories and Git command failures are ignored so they never prevent Pi from working.
 
 ## Installation
-Clone the repository but simply copy the file into your Pi extensions directory:
+
+Install from GitHub (recommended, pinned to the `v1.0.0` tag):
 
 ```bash
-mkdir -p ~/.pi/extensions
-cp extensions/statusline.ts ~/.pi/extensions/
+pi install git:github.com/hs1n/pi-statusline@v1.0.0
 ```
 
-
-No additional dependencies are required.
-
-## Usage
-- Install the extension:
+To track the latest development state instead, install from `main`:
 
 ```bash
-pi install ./        # local path
-pi install npm:@hs1n/pi-statusline   # from npm
-pi install git:github.com/hs1n/pi-statusline@main   # from git tag
+pi install git:github.com/hs1n/pi-statusline@main
 ```
 
-- After installing, simply reload Pi or restart your session to load the new extension.
+To try a checkout of this repository without installing it:
+
+```bash
+pi -e ./            # from inside the repo
+pi -e git:github.com/hs1n/pi-statusline@v1.0.0
+```
+
+After installing, reload Pi or restart your session to load the extension:
 
 ```bash
 pi reload
 ```
-The status line will automatically appear as the default `statusline` UI element. You can change its name by editing the first argument to `setStatus` if you want to display it elsewhere.
+
+The status line appears as the default `statusline` UI element. You can change its name by editing the first argument to `setStatus` if you want to display it elsewhere.
+
+> **Single-file alternative**: if you prefer not to install the package, copy `extensions/statusline.ts` into `~/.pi/extensions/` and restart Pi. No additional dependencies are required.
 
 ## Package
 
-This repository is a **Pi package**. It contains a `package.json` and a `pi` key that declares the locations of extensions, skills, prompts, and themes. You can publish it to npm, or install it directly from GitHub.
-
----
+This repository is a **Pi package**. It contains a `package.json` with a `pi` key that declares the extension location. Install it directly from GitHub as shown above.
 
 ## Development
-The entrypoint lives in `extensions/statusline.ts`; turn statistics are handled by `extensions/turn-accounting.ts`, and Git snapshots by `extensions/git-snapshot.ts`. Run tests if you add changes.
 
----
+The entrypoint lives in `extensions/statusline.ts`; turn statistics are handled by `extensions/turn-accounting.ts`, and Git snapshots by `extensions/git-snapshot.ts`.
+
+Run the checks locally (also enforced by CI on push and pull requests):
+
+```bash
+bun install
+bun run build   # type-check and emit dist/
+bun test
+```
 
 ## License
 MIT
-
